@@ -254,7 +254,6 @@ int WINAPI WinMain(
 		//マウス入力の更新
 		MouseUpdate();
 
-
 		//FPS値の更新
 		FPSUpdate();
 
@@ -682,11 +681,12 @@ VOID PlayProc(VOID)
 		//プレイ画面に切り替え
 		ChangeScene(GAME_SCENE_END);
 
-		//マウスを描画しない
+		//マウスを描画する
 		SetMouseDispFlag(TRUE);
 
 		return;
 	}
+
 	/*
 	//プレイヤーを操作する
 	if (KeyDown(KEY_INPUT_LEFT) == TRUE)
@@ -720,7 +720,7 @@ VOID PlayProc(VOID)
 			player.img.y += player.speed;
 		}
 	}
-*/
+	*/
 
 	//マウスの位置にプレイヤーを置く
 	player.img.x = mouse.Point.x - player.img.width / 2;	//マウスの位置を画像の中心にする
@@ -734,8 +734,8 @@ VOID PlayProc(VOID)
 	if (KeyDown(KEY_INPUT_SPACE) == TRUE)
 	*/
 
-	//マウスの左ボタンを押しているとき
-	if (MouseDown(MOUSE_INPUT_LEET) == TRUE)
+	//マウスを左ボタンを押しているとき
+	if (MouseDown(MOUSE_INPUT_LEFT) == TRUE)
 	{
 		if (tamaShotCnt == 0)
 		{
@@ -961,14 +961,15 @@ VOID PlayDraw(VOID)
 		if (teki[i].img.IsDraw == TRUE)
 		{
 			DrawGraph(teki[i].img.x, teki[i].img.y, teki[i].img.handle, TRUE);
-		}
 
-		//当たり判定の描画
-		if (GAME_DEBUG == TRUE)
-		{
-			DrawBox(
-				teki[i].coll.left, teki[i].coll.top, teki[i].coll.right, teki[i].coll.bottom,
-				GetColor(0, 0, 255), FALSE);
+			//当たり判定の描画
+			if (GAME_DEBUG == TRUE)
+			{
+				DrawBox(
+					teki[i].coll.left, teki[i].coll.top, teki[i].coll.right, teki[i].coll.bottom,
+					GetColor(0, 0, 255), FALSE);
+			}
+		}
 
 	}
 
